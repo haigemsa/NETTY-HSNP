@@ -1,0 +1,2 @@
+# CWHSNP
+该项目为基于Netty、SpringBoot，采用springmvc和http的设计思想的一款物联网服务器，按照CWHSNP协议进行通信。可以实现设备与系统的交互

@@ -1,0 +1,73 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    
+  redis:
+    database: 0
+    host: redis-server
+    port: 6379
+    password:
+    timeout: 2000
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1
+        
+security:
+  oauth2:
+    client:
+      accessTokenValidateSeconds: 31536000
+      client-id: myapp
+      client-secret: myappsecret
+
+oauth:
+    oauthUrl: https://127.0.0.1:442/oauth/token
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    # spring boot集成mybatis的方式打印sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+server:
+  address: 0.0.0.0
+  tomcat:
+    basedir: /tomcat
+    uri-encoding: UTF-8   
+  port: 443
+
+
+http-port: 9590 # http重定向https配置
+
+netty:
+  host: 0.0.0.0
+  port: 7300
+
+filePath:
+  static:
+    url: /file/
+    path: /Code/resource/static/spr/
+    imgUrl: /img/
+    imgPath: /Code/resource/static/spr/img/
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/share?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: 123456
+ 
+---
+spring:
+  profiles: aliyun
+  datasource:
+    url: jdbc:mysql://mysql-server:3306/spr?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: 123456
+
