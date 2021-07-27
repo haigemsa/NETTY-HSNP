@@ -1,28 +1,16 @@
 package com.grich.hsnp.server;
 
-import com.alibaba.fastjson.JSONObject;
-import com.grich.hsnp.core.ResultCode;
 import com.grich.hsnp.core.ResultGenerator;
-import com.grich.hsnp.core.ServiceException;
-import com.grich.hsnp.entity.AdviceStatusEntity;
 import com.grich.hsnp.entity.SocketDto;
-import com.grich.hsnp.enums.SocketConstant;
-import com.grich.hsnp.utils.Tools;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.socket.SocketChannel;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.Resource;
-import java.util.HashSet;
 
 /**
  * @author lucas

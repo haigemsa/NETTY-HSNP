@@ -5,6 +5,7 @@ package com.grich.hsnp.utils;
 
 
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -12,14 +13,13 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.Resource;
 
 /**
- * @author william
+ * @author lucas
  *
  */
 @Component
 public class RestUtils {
 
-    @Resource
-    RestTemplate restTemplate;
+
 
 	/**
 	 * get请求
@@ -68,7 +68,7 @@ public class RestUtils {
 	 * @throws Exception
 	 */
 	public JSONObject login(String url, String jsonString) throws Exception {
-		//RestTemplate restTemplate = new RestTemplate(new HttpsClientRequestFactory());
+		RestTemplate restTemplate = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		headers.set("Authorization", "Basic bXlhcHA6bXlhcHBzZWNyZXQ=");

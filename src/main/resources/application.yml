@@ -35,14 +35,7 @@ mybatis:
 
 
 server:
-  address: 0.0.0.0
-  tomcat:
-    basedir: /tomcat
-    uri-encoding: UTF-8   
   port: 443
-
-
-http-port: 9590 # http重定向https配置
 
 netty:
   host: 0.0.0.0
