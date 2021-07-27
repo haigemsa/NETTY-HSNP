@@ -18,7 +18,7 @@ import java.net.InetSocketAddress;
  */
 @Slf4j
 @SpringBootApplication
-public class ShareApplication implements CommandLineRunner{
+public class HsnpApplication implements CommandLineRunner{
     @Value("${netty.host}")
     private String host;
     @Value("${netty.port}")
@@ -28,7 +28,7 @@ public class ShareApplication implements CommandLineRunner{
 
 
     public static void main(String[] args) {
-        SpringApplication.run(ShareApplication.class, args);
+        SpringApplication.run(HsnpApplication.class, args);
 
     }
     @Override
