@@ -1,5 +1,7 @@
 package com.grich.hsnp;
 
+import com.grich.hsnp.annotation.SocketRequestScan;
+import com.grich.hsnp.server.ClassHandle;
 import com.grich.hsnp.server.NettyServer;
 import io.netty.channel.ChannelFuture;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 
 /**
@@ -18,6 +21,7 @@ import java.net.InetSocketAddress;
  */
 @Slf4j
 @SpringBootApplication
+@SocketRequestScan("com.grich.hnsp")
 public class HsnpApplication implements CommandLineRunner{
     @Value("${netty.host}")
     private String host;
@@ -33,6 +37,13 @@ public class HsnpApplication implements CommandLineRunner{
     }
     @Override
     public void run(String... args) {
+        try {
+            ClassHandle.componentScanInit(HsnpApplication.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         InetSocketAddress address = new InetSocketAddress(host, port);
         ChannelFuture channelFuture = nettyServer.bing(address);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> nettyServer.destroy()));

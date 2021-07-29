@@ -52,7 +52,7 @@ filePath:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/share?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/hsnp?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
     username: root
     password: 123456
  
