@@ -8,10 +8,6 @@ import com.grich.hsnp.model.user.VlabUser;
  * @author lucas
  */
 public interface VlabUserMapper extends Mapper<VlabUser> {
-
-    /**
-     *  清空oauth
-     */
-    void deleteOauth();
+    
 
 }

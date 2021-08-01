@@ -10,7 +10,7 @@ import java.util.List;
  * @author lucas
  */
 @Data
-public class SocketDto {
+public class SocketDataDto {
 
     /**
      *  设备ID
@@ -21,15 +21,7 @@ public class SocketDto {
      *  用户ID
      */
     private String userId;
-    /**
-     *  请求类型；
-     */
-    private Integer type;
 
-    /**
-     * 密钥
-     */
-    private String token;
     /**
      *  业务数据json
      */

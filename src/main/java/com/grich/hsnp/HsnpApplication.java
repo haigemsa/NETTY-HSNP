@@ -1,7 +1,7 @@
 package com.grich.hsnp;
 
 import com.grich.hsnp.annotation.SocketRequestScan;
-import com.grich.hsnp.server.ClassHandle;
+import com.grich.hsnp.hsnp.ClassHandle;
 import com.grich.hsnp.server.NettyServer;
 import io.netty.channel.ChannelFuture;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -21,7 +20,7 @@ import java.net.InetSocketAddress;
  */
 @Slf4j
 @SpringBootApplication
-@SocketRequestScan("com.grich.hnsp")
+@SocketRequestScan("com.grich.hsnp")
 public class HsnpApplication implements CommandLineRunner{
     @Value("${netty.host}")
     private String host;
@@ -38,7 +37,10 @@ public class HsnpApplication implements CommandLineRunner{
     @Override
     public void run(String... args) {
         try {
+            //扫描项目的class文件
             ClassHandle.componentScanInit(HsnpApplication.class);
+            //加载初始化处理器的类和方法
+            ClassHandle.initSocketRequestMappingMap();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

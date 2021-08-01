@@ -28,14 +28,6 @@ public class AdviceStatusEntity {
     private volatile String channelId;
 
 
-
-
-    /**
-     * 目前在店人数
-     */
-    private volatile HashSet<String> userIds;
-
-
     /**
      * 返回结果
      */

@@ -1,6 +1,7 @@
 package com.grich.hsnp.server;
 
 import com.grich.hsnp.entity.AdviceStatusEntity;
+import com.grich.hsnp.hsnp.HsnpResponse;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,16 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ChannelHandler {
 
     /**
-     * 用于存放用户Channel信息，也可以建立map结构模拟不同的消息群
+     * 客户端ID对应的HsnpResponse
      */
+    public final static ConcurrentHashMap<String, HsnpResponse> ID_RESPONSE = new ConcurrentHashMap<>();
 
-    //public final static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-
-    public final static ConcurrentHashMap<String, ChannelHandlerContext> CHANNEL_MAP = new ConcurrentHashMap<String, ChannelHandlerContext>();
-
-    /**
-     * socket对应的设备的ID的MAP
-     */
-    public final static ConcurrentHashMap<String, AdviceStatusEntity> SOCKET_ID_ID = new ConcurrentHashMap<String, AdviceStatusEntity>();
 
 }

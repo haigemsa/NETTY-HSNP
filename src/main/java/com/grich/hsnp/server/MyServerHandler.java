@@ -1,7 +1,9 @@
 package com.grich.hsnp.server;
 
 import com.grich.hsnp.core.ResultGenerator;
-import com.grich.hsnp.entity.SocketDto;
+import com.grich.hsnp.hsnp.HsnpRequest;
+import com.grich.hsnp.hsnp.HsnpRequestDispatch;
+import com.grich.hsnp.hsnp.HsnpResponse;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -46,17 +48,18 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        SocketDto socketDto;
-        try {
+        String data =  msg.toString();
 
-        } catch (Exception e) {
-            ctx.writeAndFlush(ResultGenerator.genFailResult("参数错误！").toStringForSocket());
-            return;
-        }
-        //根据type处理相应的业务逻辑
-
-
+        //hnsp请求对象
+        HsnpRequest hsnpRequest = new HsnpRequest(ctx,data);
+        //hnsp响应对象
+        HsnpResponse hsnpResponse = new HsnpResponse(ctx);
+        //uri处理器
+        HsnpRequestDispatch hsnpRequestDispatch = new HsnpRequestDispatch(hsnpRequest, hsnpResponse);
+        hsnpRequestDispatch.doDispatch();
     }
+
+
 
     /**
      * 抓住异常，当发生异常的时候，可以做一些相应的处理，比如打印日志、关闭链接
@@ -64,7 +67,7 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         ctx.writeAndFlush(ResultGenerator.genFailResult(cause.getMessage()).toStringForSocket());
-        logger.info("异常信息：\r\n" + cause);
+        logger.info("异常信息：\r\n" + cause, cause);
     }
 
     /**
@@ -82,7 +85,6 @@ public class MyServerHandler extends ChannelInboundHandlerAdapter {
         if (!channel.isActive() && !channel.isOpen() && !channel.isWritable()) {
             channel.close();
         }
-        ChannelHandler.CHANNEL_MAP.remove(channelId);
     }
 
 

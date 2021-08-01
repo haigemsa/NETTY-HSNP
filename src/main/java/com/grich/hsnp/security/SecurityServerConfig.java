@@ -34,11 +34,8 @@ public class SecurityServerConfig extends WebSecurityConfigurerAdapter {
 //        web.ignoring().antMatchers("/fonts/**");
 //        web.ignoring().antMatchers("/dashboard/**");
 //        web.ignoring().antMatchers("/chart/config/**");
-		web.ignoring().antMatchers("/user/register/**");
 		web.ignoring().antMatchers("/ilab/validateToken");
 		web.ignoring().antMatchers("/user/login/**");
-		web.ignoring().antMatchers("/weChat/login/**");
-		web.ignoring().antMatchers("/recharge/payNotify/**");
     }
 	@Bean
 	public PasswordEncoder passwordEncoder() {

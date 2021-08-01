@@ -11,9 +11,6 @@ import com.grich.hsnp.core.ResultGenerator;
 import com.grich.hsnp.enums.Constants;
 import com.grich.hsnp.enums.LogType;
 import com.grich.hsnp.model.user.VlabUser;
-import com.grich.hsnp.service.log.SysLogService;
-import com.grich.hsnp.service.user.SysAclService;
-import com.grich.hsnp.service.user.SysRoleService;
 import com.grich.hsnp.service.user.VlabUserService;
 import com.grich.hsnp.utils.IpUtil;
 import com.grich.hsnp.utils.RequestHolder;
@@ -38,13 +35,7 @@ public class LoginService  {
     @Resource
     private VlabUserService sysUserService;
 
-    @Resource
-    private SysRoleService sysRoleService;
-    @Resource
-    private SysAclService sysAclService;
 
-    @Resource
-    private SysLogService sysLogService;
 
     @Resource
     private RestUtils restUtils;
@@ -103,7 +94,6 @@ public class LoginService  {
                 retMap.put("ip", operatorIp);
                 retMap.put("token", jsonObject);
 
-                sysLogService.saveSysLog(LogType.TYPE_USER, "登录系统", "用户登录");
 
                 return ResultGenerator.genSuccessResult(retMap);
             } else {
